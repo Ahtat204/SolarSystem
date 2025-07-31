@@ -4,6 +4,9 @@
 class Sphere
 {
 public:
+	float getRadius(){return radius;}
+	Sphere() = default;
+	
 
 private:
 
