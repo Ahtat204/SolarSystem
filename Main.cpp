@@ -1,81 +1,64 @@
 #include <iostream>
-#include <stdexcept>
-#include <vector>
-#include <cmath>       // for sin, cos
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 constexpr float PI = 3.14159265358979323846f;
 
-// Vertex Shader source code
+// Vertex Shader
 const char* vertexShaderSource = R"(
 #version 430 core
-
-layout (location = 0) in vec3 aPos;
-
 uniform mat4 model;
 uniform mat4 view;
-uniform mat4 perspective;
+uniform mat4 projection;
+uniform int stacks;
+uniform int slices;
+uniform float radius;
 
 out vec3 worldPos;
 
 void main() {
-    vec4 wPos = model * vec4(aPos, 1.0);
-    worldPos = vec3(wPos);
-    gl_Position = perspective * view * wPos;
+    int vertexID = gl_VertexID;
+
+    int stack = vertexID / (slices + 1);
+    int slice = vertexID % (slices + 1);
+
+    float phi = float(stack) / float(stacks) * 3.14159265359; // 0 -> PI
+    float theta = float(slice) / float(slices) * 2.0 * 3.14159265359; // 0 -> 2PI
+
+    float x = radius * sin(phi) * cos(theta);
+    float y = radius * cos(phi);
+    float z = radius * sin(phi) * sin(theta);
+
+    vec4 wPos = model * vec4(x, y, z, 1.0);
+    worldPos = wPos.xyz;
+    gl_Position = projection * view * wPos;
 }
 )";
 
-// Fragment Shader source code
+// Fragment Shader
 const char* fragmentShaderSource = R"(
 #version 430 core
-
 in vec3 worldPos;
-out vec4 color;
-
-uniform vec3 camPos;
-uniform vec3 sphereCenter;
+out vec4 FragColor;
 
 void main() {
-    color = vec4(1.0, 0.3, 0.2, 1.0); // Simple red-orange color
+    FragColor = vec4(1.0, 1.0, 0.2, 1.0);
 }
 )";
 
+
 int main() {
-    // Initialize GLFW
-    if (!glfwInit()) return -1;
-
-    GLFWwindow* window = glfwCreateWindow(1000, 500, "Solar System", NULL, NULL);
-    if (!window) {
-        glfwTerminate();
-        return -1;
-    }
-
+    glfwInit();
+    GLFWwindow* window = glfwCreateWindow(1000, 500, "GPU Sphere", nullptr, nullptr);
     glfwMakeContextCurrent(window);
     gladLoadGL();
 
-    // ---- Generate sphere vertices ----
-    std::vector<float> Vertices;
-    int stacks = 2400;
-    int slices = 2400;
-    float radius = 1.0f;
+    glEnable(GL_DEPTH_TEST);
 
-    for (int i = 0; i <= stacks; ++i) {
-        float theta = PI * i / stacks;
-        float y = cos(theta);
-        float r = sin(theta);
-
-        for (int j = 0; j <= slices; ++j) {
-            float phi = 2 * PI * j / slices;
-            float x = r * cos(phi);
-            float z = r * sin(phi);
-            Vertices.push_back(x * radius);
-            Vertices.push_back(y * radius);
-            Vertices.push_back(z * radius);
-        }
-    }
-
-    // ---- Compile shaders ----
+    // Compile shaders
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, nullptr);
     glCompileShader(vertexShader);
@@ -89,94 +72,58 @@ int main() {
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
 
-    int success;
-    char infoLog[512];
-
-    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-        std::cerr << "Vertex Shader Compilation Failed:\n" << infoLog << std::endl;
-    }
-
-    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-    if (!success) {
-        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-        std::cerr << "Fragment Shader Compilation Failed:\n" << infoLog << std::endl;
-    }
-
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if (!success) {
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-        std::cerr << "Shader Program Linking Failed:\n" << infoLog << std::endl;
-    }
-
-    /*
-	 * shaderProgram is now ready to use.
-     */
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    // ---- Setup VAO and VBO ----
+    // Sphere resolution
+    constexpr  int stacks = 10000;
+    constexpr int slices = 10000;
+     constexpr int16_t totalVertices = (stacks + 1) * (slices + 1);
+
+    // Setup empty VAO/VBO (we’ll use gl_VertexID)
     GLuint VAO, VBO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-
     glBindVertexArray(VAO);
-
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, Vertices.size() * sizeof(float), Vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, totalVertices * sizeof(float), nullptr, GL_STATIC_DRAW);
 
-    // layout(location = 0) => aPos
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-
-    // ---- Uniforms ----
-    float identity[16] = {
-        1,0,0,0,
-        0,1,0,0,
-        0,0,1,0,
-        0,0,0,1
-    };
-
-    GLint modelLoc = glGetUniformLocation(shaderProgram, "model");
+    // Uniform locations
+     GLint modelLoc = glGetUniformLocation(shaderProgram, "model");
     GLint viewLoc = glGetUniformLocation(shaderProgram, "view");
-    GLint projLoc = glGetUniformLocation(shaderProgram, "perspective");
-    GLint camLoc = glGetUniformLocation(shaderProgram, "camPos");
-    GLint sphereLoc = glGetUniformLocation(shaderProgram, "sphereCenter");
+    GLint projLoc = glGetUniformLocation(shaderProgram, "projection");
 
-    // ---- Render loop ----
+    // Camera setup
+    glm::mat4 model = glm::mat4(1.0f);
+    glm::mat4 view = glm::lookAt(glm::vec3(0.0f, 0.0f, 5.0f),
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.0f, 1.0f, 0.0f));
+    glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1000.0f / 500.0f, 0.1f, 100.0f);
+
+    // Render loop
     while (!glfwWindowShouldClose(window)) {
-        GLenum err;
-        while ((err = glGetError()) != GL_NO_ERROR)
-            std::cout << "OpenGL error: " << err << std::endl;
-
-        glViewport(0, 0, 1000, 500);
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glUseProgram(shaderProgram);
-
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, identity);
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, identity);
-        glUniformMatrix4fv(projLoc, 1, GL_FALSE, identity);
-        glUniform3f(camLoc, 0.0f, 0.0f, 3.0f);
-        glUniform3f(sphereLoc, 0.0f, 0.0f, 0.0f);
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+        glUniform1i(glGetUniformLocation(shaderProgram, "stacks"), stacks);
+        glUniform1i(glGetUniformLocation(shaderProgram, "slices"), slices);
+        glUniform1f(glGetUniformLocation(shaderProgram, "radius"), 1.0f);
 
         glBindVertexArray(VAO);
-        glDrawArrays(GL_POINTS, 0, Vertices.size() / 3);  // you can change to GL_TRIANGLES later
+
+        // Draw sphere in strips
+        for (int i = 0; i < stacks; ++i) {
+            glDrawArrays(GL_POINTS, i * (slices + 1), (slices + 1) * 2);
+        }
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-    // ---- Cleanup ----
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-    glDeleteProgram(shaderProgram);
     glfwTerminate();
-
-    return 0;
 }
