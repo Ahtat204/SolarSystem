@@ -123,10 +123,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="pch.h" />
     <ClInclude Include="ShaderClass.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -134,6 +136,7 @@
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
+    <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sphere.frag" />

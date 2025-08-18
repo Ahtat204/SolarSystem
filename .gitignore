@@ -11,7 +11,7 @@ x64/
 x86/
 [Bb]in/
 [Oo]bj/
-
+./idea
 # Visual Studio cache/options
 vs/
 
