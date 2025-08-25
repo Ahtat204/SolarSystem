@@ -4,9 +4,11 @@ uniform mat4 view;
 uniform mat4 projection;
 uniform int stacks;
 uniform int slices;
+uniform vec3 center;
 uniform float radius;
 
 out vec3 worldPos;
+out vec2 textCoord;
 
 void main() {
     int vertexID = gl_VertexID;
@@ -21,7 +23,8 @@ void main() {
     float y = radius * cos(phi);
     float z = radius * sin(phi) * sin(theta);
 
-    vec4 wPos = model * vec4(x, y, z, 1.0);
+    vec4 wPos = model * vec4(x+center.x, y+center.y, z+center.z, 1.0);
     worldPos = wPos.xyz;
     gl_Position = projection * view * wPos;
+    textCoord= vec2(float(slice) / float(slices), float(stack) / float(stacks));
 }

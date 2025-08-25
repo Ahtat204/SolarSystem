@@ -2,6 +2,7 @@
 
 
 
+
 std::string get_file_content(const char* filename) {
 
 	std::ifstream in(filename, std::ios::binary);
@@ -46,15 +47,16 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile)
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexSource, nullptr);
 	glCompileShader(vertexShader);
-
+	CompileErrors(vertexShader, "VERTEX");
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragmentShader, 1, &fragmentSource, nullptr);
 	glCompileShader(fragmentShader);
-
+	CompileErrors(fragmentShader, "FRAGMENT");
 	ID = glCreateProgram();
 	glAttachShader(ID, vertexShader);
 	glAttachShader(ID, fragmentShader);
 	glLinkProgram(ID);
+	CompileErrors(ID, "PROGRAM");
 
 	int success;
 	char infoLog[512];
@@ -99,5 +101,30 @@ void Shader::Delete()
 	// glDeleteShader(vertexShader);
 	// glDeleteShader(fragmentShader);
 	
+}
+
+void Shader::CompileErrors(unsigned int shader, const char* type)
+{
+	GLint hasCompiled;
+	char infoLog[1024];
+	if (type!="PROGRAM")
+	{
+		glGetShaderiv(shader, GL_COMPILE_STATUS, &hasCompiled);
+		if (hasCompiled==GL_FALSE)
+		{
+			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
+			std::cout << "SHADER_COMPILATION_ERRORS for :" << type << "\n" << std::endl;
+		}
+	}
+	else
+	{
+		glGetProgramiv(shader, GL_COMPILE_STATUS, &hasCompiled);
+		if (hasCompiled == GL_FALSE)
+		{
+			glGetProgramInfoLog(shader, 1024, NULL, infoLog);
+			std::cout << "SHADER_LINKING_ERRORS for :" << type << "\n" << std::endl;
+		}
+	}
+
 }
 
