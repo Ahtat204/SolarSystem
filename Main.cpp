@@ -39,7 +39,7 @@ int main() {
     } else {
         std::cerr << "Failed to load image." << std::endl;
 	}
-    // Uniform locations
+    // Uniform locationsù
      const GLint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
     const  GLint viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
     const GLint projLoc = glGetUniformLocation(shaderProgram.ID, "projection");
