@@ -13,10 +13,6 @@
 constexpr  int16_t stacks = 2000;//around the x axis
 constexpr int16_t slices = 2000;//around the y axis
 constexpr int16_t totalVertices = (stacks + 1) * (slices + 1);
-
-
-
-
 int main() {
 	Window window(1000, 500, "Solar System");
     glEnable(GL_DEPTH_TEST);
@@ -27,33 +23,22 @@ int main() {
     VAO1.LinkVBO(VBO1, 0);
 	VBO1.Unbind();
     VAO1.Unbind();
-
-    //textures
     int widthImg, heightImg, numColCh;
     GLuint texture;
     glGenTextures(1, &texture);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture);
-  // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     unsigned char* bytes = stbi_load("earthimage.jpg", &widthImg, &heightImg, &numColCh, 0);
     if (bytes){
-
-        
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImg, heightImg, 0, GL_RGB, GL_UNSIGNED_BYTE, bytes);
         glGenerateMipmap(GL_TEXTURE_2D);
         stbi_image_free(bytes);
-        
         std::cout << "Image loaded successfully: " << widthImg << "x" << heightImg << " with " << numColCh << " channels." << std::endl;
     } else {
         std::cerr << "Failed to load image." << std::endl;
 	}
-   
-	
-
-
     // Uniform locations
      const GLint modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
     const  GLint viewLoc = glGetUniformLocation(shaderProgram.ID, "view");
@@ -86,7 +71,6 @@ int main() {
         window.swapBuffers();
         window.poolEvents();
     }
-
     VAO1.Delete();
 	VBO1.Delete();
    // glad_glDeleteTextures(1, &texture);
