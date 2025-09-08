@@ -1,3 +1,5 @@
+/*this shader generates a sphere by GPU procedurally based on stacks and slices.
+
 #version 430 core
 uniform mat4 model;
 uniform mat4 view;
@@ -6,10 +8,8 @@ uniform int stacks;
 uniform int slices;
 uniform vec3 center;
 uniform float radius;
-
 out vec3 worldPos;
 out vec2 textCoord;
-
 void main() {
     int vertexID = gl_VertexID;
 

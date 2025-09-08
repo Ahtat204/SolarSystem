@@ -129,9 +129,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Constants.h" />
+    <ClInclude Include="Include\Mesh.h" />
+    <ClInclude Include="Include\SphereFactory.h" />
     <ClInclude Include="Include\stb\stb.h" />
     <ClInclude Include="Include\pch.h" />
-    <ClInclude Include="ShaderClass.h" />
+    <ClInclude Include="Include\ShaderClass.h" />
     <ClInclude Include="Include\Sphere.h" />
     <ClInclude Include="Include\VAO.h" />
     <ClInclude Include="Include\VBO.h" />
@@ -141,8 +144,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="ShaderClass.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="SphereFactory.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
