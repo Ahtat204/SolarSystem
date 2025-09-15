@@ -27,7 +27,11 @@
  * glm::mat4 projection = glm::perspective(...);
  *
  * mesh.Draw(shader, model, view, projection, glm::vec3(0.0f, 0.0f, 0.0f));
+<<<<<<< HEAD
  * @encode
+=======
+ * @endcode
+>>>>>>> a35d1250122855209d459d57d0c06dcc0a641963
  */
 class Mesh {
 public:
@@ -58,7 +62,11 @@ public:
     /**
      * @brief Draw the mesh with only a model transform.
      *
+<<<<<<< HEAD
      * Useful for cases where the shader does not require view/projection matrices,and when there's a camera class responsible for the others.
+=======
+     * Useful for cases where the shader does not require view/projection matrices.
+>>>>>>> a35d1250122855209d459d57d0c06dcc0a641963
      *
      * @param shader Reference to the Shader to use for rendering.
      * @param model Model matrix for object transformations.

@@ -1,13 +1,10 @@
 #pragma once
-#include <memory>
 #include <vector>
+#include <glad/glad.h>
 #include <glm/fwd.hpp>
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
 #include "VBO.h"
-#include "Mesh.h"
-#include "Constants.h"
-#include "ShaderClass.h"
 
 using namespace Constants;
 
@@ -61,44 +58,16 @@ protected:
     std::shared_ptr<Mesh> mesh;
 
 public:
-    /// Name identifier for the sphere (e.g., "Earth", "Mars").
-    const char* name;
-
-    /**
-     * @brief Constructor for the Sphere class.
-     * @param name Name identifier for the sphere.
-     */
-    explicit Sphere(const char* name);
-
-
-
-    explicit Sphere(glm::vec3 center,float radius);
-    /**
-     * @brief Set the file path of the sphere's texture.
-     * @param texturefile Path to the texture file (e.g., "resources/Earth.jpg").
-     */
-    void set_texturefile(const char* texturefile);
-
-    /**
-     * @brief Get the current radius of the sphere.
-     * @return Radius as a floating-point value.
-     */
-    [[nodiscard]] float getRadius() const { return radius; }
-
-    /**
-     * @brief Set the radius of the sphere.
-     * @param r New radius value.
-     */
-    void setRadius(const float& r) { radius = r; }
-
-    /**
-     * @brief Set the center position of the sphere in world coordinates.
-     * @param Center New center position as a glm::vec3.
-     */
-    void set_center(const glm::vec3& Center);
-
-    void Create();
-
+	~Sphere();
+	const char* name;
+	 float getRadius()const {return radius;}
+	Sphere() = default;
+	explicit Sphere(const char*  name);
+	void setRadius(const float r) { radius = r; }
+	void Render(Shader shader);
+	void SetCenter(glm::vec3);
+	void setTexture(const char* texturefile);
+	void SetupUniforms();
 private:
     /**
      * @brief Generate vertex data for the sphere based on stacks and slices.

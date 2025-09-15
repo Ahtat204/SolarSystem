@@ -129,38 +129,55 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Constants.h" />
-    <ClInclude Include="Include\Mesh.h" />
-    <ClInclude Include="Include\SphereFactory.h" />
+    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Include\Camera.h" />
     <ClInclude Include="Include\stb\stb.h" />
+    <ClInclude Include="Include\InputManager.h" />
     <ClInclude Include="Include\pch.h" />
     <ClInclude Include="Include\ShaderClass.h" />
     <ClInclude Include="Include\Sphere.h" />
+    <ClInclude Include="Include\Texture.h" />
+    <ClInclude Include="Include\Utility.hpp" />
     <ClInclude Include="Include\VAO.h" />
     <ClInclude Include="Include\VBO.h" />
     <ClInclude Include="Include\Window.h" />
-    <ClInclude Include="Include\Texture.h" />
-    <ClInclude Include="Include\Camera.h" />
+    <ClInclude Include="Include\WindowBuilder.h" />
+    <ClInclude Include="Include\Mesh.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="SphereFactory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Program.cpp" />
     <ClCompile Include="ShaderClass.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="SphereFactory.cpp" />
     <ClCompile Include="stb.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="VAO.cpp" />
     <ClCompile Include="VBO.cpp" />
     <ClCompile Include="Window.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="WindowBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Planet.glsl" />
+    <None Include="ressources\Shaders\Sphere.frag" />
+    <None Include="ressources\Shaders\Sphere.vert" />
     <None Include="Sphere.frag" />
     <None Include="Sphere.vert" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Earth.jpg" />
+    <Image Include="ressources\Earth.jpg" />
+    <Image Include="ressources\mercury.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SolarSystem.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

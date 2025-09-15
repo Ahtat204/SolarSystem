@@ -4,11 +4,19 @@
 void Sphere::GenerateVertices(std::vector<float>& vertices)
 {
 	for (auto i = 0; i <= stacks; ++i) {
+<<<<<<< HEAD
 	  const float theta = glm::pi<float>() * i / stacks;
 		const float y = cos(theta);
 		float r = sin(theta);
 		for (int j = 0; j <= slices; ++j) {
 			float phi = 2 * glm::pi<float>() * j / slices;
+=======
+	  const float theta = PI * i / stacks;
+		const float y = cos(theta);
+		float r = sin(theta);
+		for (int j = 0; j <= slices; ++j) {
+			float phi = 2 * PI * j / slices;
+>>>>>>> a35d1250122855209d459d57d0c06dcc0a641963
 			float x = r * cos(phi);
 			float z = r * sin(phi);
 			vertices.push_back(x * radius);
