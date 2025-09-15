@@ -21,6 +21,11 @@ Window::~Window()
 	glfwTerminate();
 }
 
+void Window::Config()
+{
+    glEnable(GL_DEPTH_TEST);
+}
+
 bool Window::shouldClose() const
 {
 	return glfwWindowShouldClose(window);

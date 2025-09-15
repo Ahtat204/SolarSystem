@@ -1,14 +1,14 @@
 #include"Sphere.h"
 #include <glm/gtc/type_ptr.hpp>
 
-void Sphere::GenerateVertices(std::vector<float>& vertices) const
+void Sphere::GenerateVertices(std::vector<float>& vertices)
 {
 	for (auto i = 0; i <= stacks; ++i) {
-	  const float theta =glm::pi * i / stacks;
+	  const float theta = glm::pi<float>() * i / stacks;
 		const float y = cos(theta);
 		float r = sin(theta);
 		for (int j = 0; j <= slices; ++j) {
-			float phi = 2 *glm::pi * j / slices;
+			float phi = 2 * glm::pi<float>() * j / slices;
 			float x = r * cos(phi);
 			float z = r * sin(phi);
 			vertices.push_back(x * radius);
@@ -24,14 +24,21 @@ Sphere::Sphere(const char* name): shaderProgram("ressources/Shaders/Sphere.vert"
 	GenerateVertices(Vertices);
 	mesh = std::make_shared<Mesh>(Vertices, texturefile);
 }
+
 void Sphere::set_center(const glm::vec3& Center)
 {
 	center = Center;
 }
+
 void Sphere::Create()
 {
 	mesh->Draw(shaderProgram, model, center);
 }
+
+
+
+
+
 void Sphere::set_texturefile(const char* texturefile)
 {
 	this->texturefile = texturefile;

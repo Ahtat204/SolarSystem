@@ -1,10 +1,15 @@
 #pragma once
+#include <memory>
+#include <vector>
 #include <glm/fwd.hpp>
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
 #include "VBO.h"
 #include "Mesh.h"
+#include "Constants.h"
+#include "ShaderClass.h"
 
+using namespace Constants;
 
 /**
  * @class Sphere
@@ -65,6 +70,9 @@ public:
      */
     explicit Sphere(const char* name);
 
+
+
+    explicit Sphere(glm::vec3 center,float radius);
     /**
      * @brief Set the file path of the sphere's texture.
      * @param texturefile Path to the texture file (e.g., "resources/Earth.jpg").
@@ -99,7 +107,7 @@ private:
      * This function computes the sphere geometry by subdividing
      * it into `stacks` (latitude) and `slices` (longitude).
      */
-    void GenerateVertices(std::vector<float>& vertices) const;
+    void GenerateVertices(std::vector<float>& vertices);
     Shader shaderProgram;
 };
 
