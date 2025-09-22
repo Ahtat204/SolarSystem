@@ -19,12 +19,15 @@ public:
 	GLFWwindow* getHandle() const { return window; }
 	int getWidth() const { return width; }
 	int getHeight() const { return height; }
+	 
 private:
 	/// 
 	GLFWwindow* window;
 	int width, height;
 
 	void initGLFW(std::string title);
+public:
+	GLFWwindow* getWindow() { return window; }
 
 };
 

@@ -72,9 +72,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>C:\Users\lahce\VisualStudioProjects\SolarSystem\Include;$(IncludePath)</IncludePath>
+    <SourcePath>C:\Users\lahce\VisualStudioProjects\SolarSystem\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>C:\Users\lahce\VisualStudioProjects\SolarSystem\Include;$(IncludePath)</IncludePath>
+    <SourcePath>C:\Users\lahce\VisualStudioProjects\SolarSystem\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,28 +149,26 @@
     <ClInclude Include="SphereFactory.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="App.cpp" />
-    <ClCompile Include="Application.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="Program.cpp" />
-    <ClCompile Include="ShaderClass.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="Sphere.cpp" />
-    <ClCompile Include="SphereFactory.cpp" />
-    <ClCompile Include="stb.cpp" />
-    <ClCompile Include="Texture.cpp" />
-    <ClCompile Include="VAO.cpp" />
-    <ClCompile Include="VBO.cpp" />
-    <ClCompile Include="Window.cpp" />
-    <ClCompile Include="WindowBuilder.cpp" />
+    <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\InputManager.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\ShaderClass.cpp" />
+    <ClCompile Include="src\Sphere.cpp" />
+    <ClCompile Include="src\SphereFactory.cpp" />
+    <ClCompile Include="src\stb.cpp" />
+    <ClCompile Include="src\Texture.cpp" />
+    <ClCompile Include="src\VAO.cpp" />
+    <ClCompile Include="src\VBO.cpp" />
+    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\WindowBuilder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="Planet.glsl" />
     <None Include="ressources\Shaders\Sphere.frag" />
     <None Include="ressources\Shaders\Sphere.vert" />
+    <None Include="SolarSystem.cd" />
     <None Include="Sphere.frag" />
     <None Include="Sphere.vert" />
   </ItemGroup>

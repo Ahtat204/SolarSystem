@@ -1,12 +1,13 @@
 #pragma once
+#include <memory>
 #include <vector>
 #include <glad/glad.h>
 #include <glm/fwd.hpp>
 #include <glm/vec3.hpp>
 #include <glm/glm.hpp>
 #include "VBO.h"
-
-using namespace Constants;
+#include"ShaderClass.h"
+#include"Mesh.h"
 
 /**
  * @class Sphere
