@@ -1,14 +1,20 @@
 #pragma once
 #include <glm/glm.hpp>
 #include "ShaderClass.h"
-#include "Window.h"
+#define GLM_ENABLE_EXPERIMENTAL
+#include<glm/gtc/matrix_transform.hpp>
+#include<glm/gtc/type_ptr.hpp>
+#include<GLFW/glfw3.h>
+#include<glm/gtx/vector_angle.hpp>
+
+
 
 class Camera
 {
 	Shader shader=Shader("ressources/Shaders/Sphere.vert", "ressources/Shaders/Sphere.frag");
 public :
 	glm::vec3 Position;
-	const glm::vec3 Orientation=glm::vec3(1.0f,1.0f,1.0f);
+	glm::vec3 Orientation=glm::vec3(1.0f,1.0f,1.0f);
 	glm::vec3 Up = glm::vec3(0.0f, 1.0f, 0.0f);
 	 float height,width;
 	 float Speed = 100.1f;

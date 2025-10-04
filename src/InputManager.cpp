@@ -1,6 +1,8 @@
 #include "InputManager.h"
 
+#include <iso646.h>
 #include <glm/ext/matrix_transform.hpp>
+
 #include <glm/ext/quaternion_trigonometric.hpp>
 
 
@@ -43,6 +45,8 @@ void InputManager::Setup(GLFWwindow* window)
 	{
 		camera->Speed = 0.1f;
 	}
+
+	// Handles mouse inputs
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
 		// Hides mouse cursor
@@ -65,18 +69,18 @@ void InputManager::Setup(GLFWwindow* window)
 		// and then "transforms" them into degrees 
 		float rotX = camera->sensitivity * (float)(mouseY - (camera->height / 2)) / camera->height;
 		float rotY = camera->sensitivity * (float)(mouseX - (camera->width / 2)) / camera->width;
-		
+
 		// Calculates upcoming vertical change in the Orientation
-		glm::vec3 newOrientation = glm::rotate(camera->Orientation,glm::radians(-rotX),glm::normalize(glm::cross(camera->Orientation,camera->Up)));
+		glm::vec3 newOrientation = glm::rotate(camera->Orientation, glm::radians(-rotX), glm::normalize(glm::cross(camera->Orientation, camera->Up)));
 
 		// Decides whether or not the next vertical Orientation is legal or not
-		if (abs(glm::angle(newOrientation, camera->Up) - glm::radians(90.0f)) <= glm::radians(85.0f))
+		if (abs(glm::angle(newOrientation,camera-> Up) - glm::radians(90.0f)) <= glm::radians(85.0f))
 		{
 			camera->Orientation = newOrientation;
 		}
 
 		// Rotates the Orientation left and right
-		camera->Orientation = glm::rotate(camera->Orientation, glm::radians(-rotY),camera-> Up);
+		camera->Orientation = glm::rotate(camera->Orientation, glm::radians(-rotY), camera->Up);
 
 		// Sets mouse cursor to the middle of the screen so that it doesn't end up roaming around
 		glfwSetCursorPos(window, (camera->width / 2), (camera->height / 2));
@@ -88,6 +92,5 @@ void InputManager::Setup(GLFWwindow* window)
 		// Makes sure the next time the camera looks around it doesn't jump
 		firstClick = true;
 	}
-
 
 }
