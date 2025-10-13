@@ -11,6 +11,7 @@ class InputManager
 	bool firstClick = true;
 public:
 	explicit InputManager(std::shared_ptr<Camera> camera);
+	GLFWscrollfun scroll_back(GLFWwindow* window, double xoffset, double yoffset);
 	void Setup(GLFWwindow* window);
 
 };

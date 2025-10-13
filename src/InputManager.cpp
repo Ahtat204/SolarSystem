@@ -11,6 +11,14 @@ InputManager::InputManager(std::shared_ptr<Camera> camera): camera(camera)
 	
 }
 
+GLFWscrollfun InputManager::scroll_back(GLFWwindow* window, double xoffset, double yoffset){
+	if (yoffset < 0)
+		camera->Position += camera->Speed * -camera->Orientation;
+	else
+		camera->Position += camera->Speed * camera->Orientation;
+	return GLFWscrollfun();
+}
+
 void InputManager::Setup(GLFWwindow* window)
 {
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
@@ -41,11 +49,12 @@ void InputManager::Setup(GLFWwindow* window)
 	{
 		camera->Speed = 0.4f;
 	}
+	
 	else if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE)
 	{
 		camera->Speed = 0.1f;
 	}
-
+	glfwSetScrollCallback(window, scroll_back(window, 2.2, 2.2));
 	// Handles mouse inputs
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
@@ -64,9 +73,6 @@ void InputManager::Setup(GLFWwindow* window)
 		double mouseY;
 		// Fetches the coordinates of the cursor
 		glfwGetCursorPos(window, &mouseX, &mouseY);
-
-		// Normalizes and shifts the coordinates of the cursor such that they begin in the middle of the screen
-		// and then "transforms" them into degrees 
 		float rotX = camera->sensitivity * (float)(mouseY - (camera->height / 2)) / camera->height;
 		float rotY = camera->sensitivity * (float)(mouseX - (camera->width / 2)) / camera->width;
 
