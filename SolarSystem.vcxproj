@@ -131,32 +131,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Constants.h" />
+    <ClInclude Include="Include\Earth.h" />
     <ClInclude Include="Include\Camera.h" />
     <ClInclude Include="Include\stb\stb.h" />
     <ClInclude Include="Include\InputManager.h" />
     <ClInclude Include="Include\pch.h" />
     <ClInclude Include="Include\ShaderClass.h" />
     <ClInclude Include="Include\Sphere.h" />
+    <ClInclude Include="Include\Sun.h" />
     <ClInclude Include="Include\Texture.h" />
-    <ClInclude Include="Include\Utility.hpp" />
+    <ClInclude Include="Include\Utilities.h" />
     <ClInclude Include="Include\VAO.h" />
     <ClInclude Include="Include\VBO.h" />
     <ClInclude Include="Include\Window.h" />
     <ClInclude Include="Include\WindowBuilder.h" />
     <ClInclude Include="Include\Mesh.h" />
+    <ClInclude Include="Mars.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SphereFactory.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Mars.cpp" />
+    <ClCompile Include="src\Earth.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\ShaderClass.cpp" />
     <ClCompile Include="src\Sphere.cpp" />
-    <ClCompile Include="src\SphereFactory.cpp" />
     <ClCompile Include="src\stb.cpp" />
+    <ClCompile Include="src\Sun.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\VAO.cpp" />
     <ClCompile Include="src\VBO.cpp" />

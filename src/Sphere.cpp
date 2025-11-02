@@ -18,7 +18,11 @@ void Sphere::GenerateVertices(std::vector<float>& vertices)
 	}
 }
 
-Sphere::Sphere(const char* name): shaderProgram("ressources/Shaders/Sphere.vert", "ressources/Shaders/Sphere.frag")
+void Sphere::setTexture(const char* path)
+{
+}
+
+Sphere::Sphere(const char* name,float rad,glm::vec3 cen,glm::mat4 mod): shaderProgram("ressources/Shaders/Sphere.vert", "ressources/Shaders/Sphere.frag"),radius(rad),model(mod),center(cen)
 {
 	this->name = name;
 	GenerateVertices(Vertices);
