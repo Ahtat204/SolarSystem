@@ -34,66 +34,66 @@
 >>>>>>> a35d1250122855209d459d57d0c06dcc0a641963
  */
 class Mesh {
-public:
-    /**
-     * @brief Construct a new Mesh.
-     *
-     * @param vertices A vector of vertex data (positions, normals, UVs).
-     *        The layout of vertex data must match the attributes expected by the Shader.
-     * @param texturePath Path to the texture image file.
-     */
-    Mesh(const std::vector<float>& vertices, const std::string& texturePath);
+    public:
+        /**
+         * @brief Construct a new Mesh.
+         *
+         * @param vertices A vector of vertex data (positions, normals, UVs).
+         *        The layout of vertex data must match the attributes expected by the Shader.
+         * @param texturePath Path to the texture image file.
+         */
+        Mesh(const std::vector<float>& vertices, const std::string& texturePath);
 
-    /**
-     * @brief Draw the mesh with full transformation matrices.
-     *
-     * @param shader Reference to the Shader to use for rendering.
-     * @param model Model matrix for object transformations (scale, rotation, translation).
-     * @param view View matrix from the camera.
-     * @param projection Projection matrix (perspective or orthographic).
-     * @param center Center position of the object (used for lighting or transformations).
-     */
-    void Draw(Shader& shader,
-        const glm::mat4& model,
-        const glm::mat4& view,
-        const glm::mat4& projection,
-        const glm::vec3& center);
+        /**
+         * @brief Draw the mesh with full transformation matrices.
+         *
+         * @param shader Reference to the Shader to use for rendering.
+         * @param model Model matrix for object transformations (scale, rotation, translation).
+         * @param view View matrix from the camera.
+         * @param projection Projection matrix (perspective or orthographic).
+         * @param center Center position of the object (used for lighting or transformations).
+         */
+        void Draw(Shader& shader,
+            const glm::mat4& model,
+            const glm::mat4& view,
+            const glm::mat4& projection,
+            const glm::vec3& center);
 
-    /**
-     * @brief Draw the mesh with only a model transform.
-     *
-<<<<<<< HEAD
-     * Useful for cases where the shader does not require view/projection matrices,and when there's a camera class responsible for the others.
-=======
-     * Useful for cases where the shader does not require view/projection matrices.
->>>>>>> a35d1250122855209d459d57d0c06dcc0a641963
-     *
-     * @param shader Reference to the Shader to use for rendering.
-     * @param model Model matrix for object transformations.
-     * @param center Center position of the object.
-     */
-    void Draw(Shader& shader,
-        const glm::mat4& model,
-        const glm::vec3 center);
+        /**
+         * @brief Draw the mesh with only a model transform.
+         *
+    <<<<<<< HEAD
+         * Useful for cases where the shader does not require view/projection matrices,and when there's a camera class responsible for the others.
+    =======
+         * Useful for cases where the shader does not require view/projection matrices.
+    >>>>>>> a35d1250122855209d459d57d0c06dcc0a641963
+         *
+         * @param shader Reference to the Shader to use for rendering.
+         * @param model Model matrix for object transformations.
+         * @param center Center position of the object.
+         */
+        void Draw(Shader& shader,
+            const glm::mat4& model,
+            const glm::vec3 center);
 
-    /**
-     * @brief Free GPU resources associated with this Mesh.
-     *
-     * Deletes the VAO, VBO, and texture. After calling this,
-     * the Mesh can no longer be drawn.
-     */
-    void Delete();
+        /**
+         * @brief Free GPU resources associated with this Mesh.
+         *
+         * Deletes the VAO, VBO, and texture. After calling this,
+         * the Mesh can no longer be drawn.
+         */
+        void Delete();
 
-private:
-    /// Vertex Array Object (stores attribute state).
-    std::unique_ptr<VAO> vao;
+    private:
+        /// Vertex Array Object (stores attribute state).
+        std::unique_ptr<VAO> vao;
 
-    /// Vertex Buffer Object (stores vertex data on the GPU).
-    std::unique_ptr<VBO> vbo;
+        /// Vertex Buffer Object (stores vertex data on the GPU).
+        std::unique_ptr<VBO> vbo;
 
-    /// Texture applied to this mesh.
-    std::unique_ptr<Texture> texture;
+        /// Texture applied to this mesh.
+        std::unique_ptr<Texture> texture;
 
-    /// Number of vertices in this mesh (used for glDrawArrays).
-    GLsizei vertexCount;
+        /// Number of vertices in this mesh (used for glDrawArrays).
+        GLsizei vertexCount;
 };

@@ -8,12 +8,13 @@
 #include "VBO.h"
 #include"ShaderClass.h"
 #include"Mesh.h"
+#include "Utilities.h"
 
 /**
- * @class Sphere
+ * @class Planet
  * @brief Base class representing a spherical planet-like object.
  *
- * The Sphere class is responsible for generating a 3D sphere geometry
+ * The Planet class is responsible for generating a 3D sphere geometry
  * and holding its properties, such as radius, center position, rotation,
  * and associated texture. It uses a Mesh internally for rendering.
  *
@@ -25,23 +26,27 @@
  * earth->set_texturefile("resources/Earth.jpg");
  * @endcode
  */
-class Sphere
+class Planet
 {
-
 public:
-	const char* name;
-	const float radius;
-	void setTexture(const char* path);
-	explicit Sphere(const char*  name, float rad, glm::vec3 cen, glm::mat4 mod);
+	glm::vec3 center;
+	~Planet() = default;
+protected:
+	 float radius;
 	
-private:
-	float stacks, slices = 1000;
-	std::vector<float> Vertices;
-    void GenerateVertices(std::vector<float>& vertices);
-    Shader shaderProgram;
+	virtual void Move()=0;
+	explicit Planet(){
+		
+		mesh = std::make_shared<Mesh>(vertices, texureFilePath);
+		model = glm::mat4(1.0f);
+	}
+	glm::mat4 model;
+
+	const  float slices = 1000;
+	const  float stacks = 1000;
 	std::shared_ptr<Mesh> mesh;
-	const glm::vec3 center;
-	const glm::mat4 model;
-	const char* texturefile;
+	std::vector<float> vertices;
+	std::string texureFilePath;
+	
 };
 

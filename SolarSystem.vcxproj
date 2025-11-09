@@ -137,7 +137,7 @@
     <ClInclude Include="Include\InputManager.h" />
     <ClInclude Include="Include\pch.h" />
     <ClInclude Include="Include\ShaderClass.h" />
-    <ClInclude Include="Include\Sphere.h" />
+    <ClInclude Include="Include\Planet.h" />
     <ClInclude Include="Include\Sun.h" />
     <ClInclude Include="Include\Texture.h" />
     <ClInclude Include="Include\Utilities.h" />
@@ -146,18 +146,19 @@
     <ClInclude Include="Include\Window.h" />
     <ClInclude Include="Include\WindowBuilder.h" />
     <ClInclude Include="Include\Mesh.h" />
-    <ClInclude Include="Mars.h" />
+    <ClInclude Include="Include\Mars.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Include\Venus.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Mars.cpp" />
+    <ClCompile Include="src\Mars.cpp" />
     <ClCompile Include="src\Earth.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\ShaderClass.cpp" />
-    <ClCompile Include="src\Sphere.cpp" />
+    <ClCompile Include="src\Planet.cpp" />
     <ClCompile Include="src\stb.cpp" />
     <ClCompile Include="src\Sun.cpp" />
     <ClCompile Include="src\Texture.cpp" />
@@ -165,6 +166,7 @@
     <ClCompile Include="src\VBO.cpp" />
     <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\WindowBuilder.cpp" />
+    <ClCompile Include="src\Venus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

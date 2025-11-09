@@ -1,8 +1,7 @@
 ﻿#include "Mesh.h"
-
 #include <glm/gtc/type_ptr.inl>
 
-Mesh::Mesh(const std::vector<float>& vertices, const std::string& texturePath)
+Mesh::Mesh(const std::vector<float>&vertices, const std::string & texturePath)
 {
     vertexCount = static_cast<GLsizei>(vertices.size() / 3);
 
@@ -31,8 +30,8 @@ void Mesh::Draw(Shader& shader, const glm::mat4& model, const glm::mat4& view, c
     glUniform3fv(glGetUniformLocation(shader.ID, "center"), 1, glm::value_ptr(center));
 
     glDrawArrays(GL_POINTS, 0, vertexCount);
-  
-    
+
+
 }
 
 //to use it with the Camera class

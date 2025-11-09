@@ -1,7 +1,8 @@
 ﻿#pragma once
-#include"ShaderClass.h
+#include <memory>
+#include <vector>
+#include <glm/fwd.hpp>
+#include <glm/vec3.hpp>
 #include <glm/glm.hpp>
-#include"VBO.h"
-#include"VAO.h"
-#include"Texture.h"
+#include"ShaderClass.h"
 #include"Mesh.h"

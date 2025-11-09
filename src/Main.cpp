@@ -15,10 +15,11 @@
 #include"Window.h"
 #include "VBO.h"
 #include"Constants.h"
+#include "Earth.h"
 #include "InputManager.h"
 #include "Texture.h"
 #include"Mesh.h"
-#include "Sphere.h"
+#include "Planet.h"
 
 
 static void GenerateVertices(std::vector<float>& vertices)
@@ -61,7 +62,6 @@ int main()
 {
     std::vector<float> Vertices;
     GenerateVertices(Vertices);
-
     auto window = std::make_unique<Window>(2800, 1000, "Solar System");
     window->Config();
      auto camera = std::make_shared<Camera>(1000.0f, 500.0f, glm::vec3(1.0f, 0.0f, 6.0f));
@@ -73,14 +73,15 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         camera->Matrix(45.0f, 0.1f, 100.0f, "view", "projection");
         input_manager.Setup(window->getWindow());
-        sphere.Draw(shaderProgram, model, center);
-        earth.Draw(shaderProgram, model, Cen);
+        sphere.Draw(shaderProgram,model, center);
+        earth.Draw( shaderProgram,model, Cen);
         window->swapBuffers();
         window->poolEvents();
     }
     sphere.Delete();
 	earth.Delete();
     shaderProgram.Delete();
+    
     return 0;
 
 }

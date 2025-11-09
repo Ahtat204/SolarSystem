@@ -1,28 +1,15 @@
 #pragma once
-#include <memory>
-#include <vector>
-#include <glm/fwd.hpp>
-#include <glm/vec3.hpp>
-#include <glm/glm.hpp>
-#include"ShaderClass.h"
-#include"Mesh.h"
-class Mesh;
+#include"pch.h"
+#include "Planet.h"
+class Mesh;//forward declaration to avoid circular dependency and reduce compilation time
 
 
-class Earth final
+class Earth :public Planet
 {
 public:
-	explicit Earth();
-	const float radius = 6371.0f; // Earth's radius in kilometers
-	glm::vec3 center;
+	float radius = 6371.0f;
+	void Move() override;
 
-
-private:
-	const float stacks, slices = 1000;
-	glm::mat4 model;
-	Shader shaderclass;
-	std::shared_ptr<Mesh> mesh;
-	std::vector<float> vertices;
-	const char* texureFilePath = "ressources/Textures/Earth.jpg";
+	explicit Earth() = default;
 };
 
