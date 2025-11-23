@@ -7,9 +7,12 @@ class Mesh;//forward declaration to avoid circular dependency and reduce compila
 class Earth :public Planet
 {
 public:
-	float radius = 6371.0f;
 	void Move() override;
+	explicit Earth(glm::vec3 c);
+	void Draw() override;
 
-	explicit Earth() = default;
+
+	
+	
 };
 

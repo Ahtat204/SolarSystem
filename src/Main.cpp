@@ -20,33 +20,6 @@
 #include "Texture.h"
 #include"Mesh.h"
 #include "Planet.h"
-
-
-static void GenerateVertices(std::vector<float>& vertices)
-{
-    constexpr auto PI = 3.14159265358979323846f;
-    int stacks = 1500;
-    int slices = 1500;
-    float radius = 0.8f;
-
-    for (int i = 0; i <= stacks; ++i)
-    {
-        float theta = PI * i / stacks;
-        float y = cos(theta);
-        float r = sin(theta);
-
-        for (int j = 0; j <= slices; ++j)
-        {
-            float phi = 2 * PI * j / slices;
-            float x = r * cos(phi);
-            float z = r * sin(phi);
-            vertices.push_back(x * radius);
-            vertices.push_back(y * radius);
-            vertices.push_back(z * radius);
-        }
-    }
-}
-
 auto model = glm::mat4(1.0f);
 auto center = glm::vec3(1.0f, 1.0f, 1.0f);
 glm::vec3 Cen = glm::vec3(3.0f, 1.0f, 1.0f);
@@ -58,12 +31,13 @@ auto view = glm::lookAt(
 glm::mat4 projection = glm::perspective(glm::radians(45.0f), 1000.0f / 500.0f, 0.1f, 100.0f);
 
 
-int main()
+int min()
 {
     std::vector<float> Vertices;
-    GenerateVertices(Vertices);
+    Planet::GenerateVertices(Vertices);
     auto window = std::make_unique<Window>(2800, 1000, "Solar System");
     window->Config();
+	
      auto camera = std::make_shared<Camera>(1000.0f, 500.0f, glm::vec3(1.0f, 0.0f, 6.0f));
 	InputManager input_manager(camera);
     Shader shaderProgram("ressources/Shaders/Sphere.vert", "ressources/Shaders/Sphere.frag");
@@ -71,10 +45,13 @@ int main()
     Mesh earth(Vertices, "ressources/mercury.jpg");
     while (!window->shouldClose()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+      
         camera->Matrix(45.0f, 0.1f, 100.0f, "view", "projection");
         input_manager.Setup(window->getWindow());
         sphere.Draw(shaderProgram,model, center);
         earth.Draw( shaderProgram,model, Cen);
+       // Earth* earth_planet = new Earth(glm::vec3(1.0f, 1.0f, 1.0f));
+      //  earth_planet->Draw();
         window->swapBuffers();
         window->poolEvents();
     }
@@ -85,3 +62,4 @@ int main()
     return 0;
 
 }
+

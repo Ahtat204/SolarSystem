@@ -29,24 +29,27 @@
 class Planet
 {
 public:
+	
+	static	void GenerateVertices(std::vector<float>& vertices);
+	static std::vector<float> vertices;
+	static std::shared_ptr<Mesh> globalMesh;
 	glm::vec3 center;
 	~Planet() = default;
 protected:
 	 float radius;
-	
+	// Shader localshader = Shader("ressources/Shaders/Sphere.vert", "ressources/Shaders/Sphere.frag");
 	virtual void Move()=0;
+	glm::mat4 model;
 	explicit Planet(){
-		
-		mesh = std::make_shared<Mesh>(vertices, texureFilePath);
+		Utilities::GenerateVertices(vertices);
+		globalMesh = std::make_shared<Mesh>(vertices, "ressources / Earth.jpg");
 		model = glm::mat4(1.0f);
 	}
-	glm::mat4 model;
-
-	const  float slices = 1000;
-	const  float stacks = 1000;
-	std::shared_ptr<Mesh> mesh;
-	std::vector<float> vertices;
-	std::string texureFilePath;
+	
+	virtual void Draw()=0;
+	static constexpr  float slices = 1000;
+	static constexpr  float stacks = 1000;
+//	std::string texureFilePath;
 	
 };
 

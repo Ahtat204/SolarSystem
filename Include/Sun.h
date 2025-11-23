@@ -1,5 +1,7 @@
 #pragma once
-class Sun
+#include "Planet.h"
+
+class Sun : public Planet
 {
 };
 
