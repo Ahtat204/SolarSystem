@@ -1,18 +1,11 @@
 #include "Earth.h"
 
-void Earth::Move()
-{
-}
 
-Earth::Earth(glm::vec3 c)
-{
-	radius = 6371.0f;
-	
-	center = c;
-	radius = 6371.0f;
-}
+//Shader Utilities::globalShader = Shader("ressources/Shaders/Sphere.vert", "ressources/Shaders/Sphere.frag");
 
-void Earth::Draw()
-{
 
+void Earth::Move(glm::vec3 pivot)
+{
+	if (pivot==center) return;
+	model = glm::rotate(model, glm::radians(1.0f), pivot);
 }

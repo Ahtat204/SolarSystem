@@ -83,7 +83,7 @@ class Mesh {
          * the Mesh can no longer be drawn.
          */
         void Delete();
-
+		static std::vector<float> globalVertices;
     private:
         /// Vertex Array Object (stores attribute state).
         std::unique_ptr<VAO> vao;

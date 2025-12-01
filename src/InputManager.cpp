@@ -1,6 +1,7 @@
 #include "InputManager.h"
 
 #include <iso646.h>
+#include <algorithm>
 #include <glm/ext/matrix_transform.hpp>
 
 #include <glm/ext/quaternion_trigonometric.hpp>
@@ -23,7 +24,8 @@ void InputManager::Setup(GLFWwindow* window)
 {
 	if (glfwGetKey(window, GLFW_KEY_Z) == GLFW_PRESS)
 	{
-		camera->Position += camera->Speed * camera->Orientation;
+		camera->Position.z = std::max<float>(camera->Position.z, 0);
+		camera->Position.z -= camera->Speed;
 	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
@@ -31,7 +33,7 @@ void InputManager::Setup(GLFWwindow* window)
 	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 	{
-		camera->Position += camera->Speed * -camera->Orientation;
+		camera->Position.z += camera->Speed;
 	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 	{

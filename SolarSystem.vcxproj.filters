@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Planet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Include\ShaderClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -77,9 +74,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Planet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -144,6 +138,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="ressources\mercury.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressources\Sun.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

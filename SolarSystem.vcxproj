@@ -137,7 +137,6 @@
     <ClInclude Include="Include\InputManager.h" />
     <ClInclude Include="Include\pch.h" />
     <ClInclude Include="Include\ShaderClass.h" />
-    <ClInclude Include="Include\Planet.h" />
     <ClInclude Include="Include\Sun.h" />
     <ClInclude Include="Include\Texture.h" />
     <ClInclude Include="Include\Utilities.h" />
@@ -158,7 +157,6 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
     <ClCompile Include="src\ShaderClass.cpp" />
-    <ClCompile Include="src\Planet.cpp" />
     <ClCompile Include="src\stb.cpp" />
     <ClCompile Include="src\Sun.cpp" />
     <ClCompile Include="src\Texture.cpp" />
@@ -180,6 +178,7 @@
   <ItemGroup>
     <Image Include="ressources\Earth.jpg" />
     <Image Include="ressources\mercury.jpg" />
+    <Image Include="ressources\Sun.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SolarSystem.rc" />
