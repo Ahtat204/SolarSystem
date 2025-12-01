@@ -169,6 +169,7 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="Planet.glsl" />
+    <None Include="README.md" />
     <None Include="ressources\Shaders\Sphere.frag" />
     <None Include="ressources\Shaders\Sphere.vert" />
     <None Include="SolarSystem.cd" />

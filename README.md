@@ -1,3 +1,5 @@
+<img src="ressources/screenshot.png" alt="Thumbnail" width="200"/>>
+
 # Dependency Management
 
 This project utilizes modern tools to simplify the setup process and ensure consistent builds across development environments. We use **vcpkg** as our primary package manager to handle external libraries.
