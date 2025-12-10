@@ -132,6 +132,7 @@
     <None Include="ressources\Shaders\Sphere.vert" />
     <None Include="ClassDiagram.cd" />
     <None Include="SolarSystem.cd" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ressources\Earth.jpg">
@@ -141,6 +142,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="ressources\Sun.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ressources\Mars.jpg">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

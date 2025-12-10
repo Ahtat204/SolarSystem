@@ -2,7 +2,9 @@
 #define GLM_ENABLE_EXPERIMENTAL 
 #include <glm/vec3.hpp>
 #include <glm/gtx/transform.hpp>
-#include "pch.h"
+#include <memory>
+
+#include "Mesh.h"
 #include "Utilities.h"
 
 
@@ -21,7 +23,6 @@ public:
 
 	}
 	void Move(glm::vec3 pivot);
-
 };
 
 
