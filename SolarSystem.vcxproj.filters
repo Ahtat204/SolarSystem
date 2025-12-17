@@ -72,6 +72,9 @@
     <ClInclude Include="Include\Venus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Mercury.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp">
@@ -117,6 +120,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Venus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mercury.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

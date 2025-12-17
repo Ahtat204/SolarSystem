@@ -3,6 +3,7 @@
 #include <vector>
 #include "Earth.h"
 #include "Mars.h"
+#include "Mercury.h"
 #include"pch.h"
 #include "Utilities.h"
 
@@ -58,6 +59,7 @@ int main()
     Earth earth = Earth();
     Sun sun = Sun();
     Mars mars = Mars();
+	Mercury mercury = Mercury();
     while (!window->shouldClose()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         camera->Matrix(45.0f, 0.1f, 100.0f, "view", "projection");
@@ -65,6 +67,8 @@ int main()
         earth.mesh->Draw(shaderProgram, earth.model, earth.center);
 		sun.mesh->Draw(shaderProgram, sun.model, sun.center);
 		mars.mesh->Draw(shaderProgram, mars.model, mars.center);
+		mercury.mesh->Draw(shaderProgram, mercury.model, mercury.center);
+		mercury.Move(glm::vec3(0.0f, 1.0f, 0.0f));
         earth.Move(glm::vec3(0.0f,1.0f,0.0f));
 		sun.Move(glm::vec3(0.0f, 2.0f, 0.0f));
         mars.Move(glm::vec3(0.0f, 1.0f, 0.0f));
