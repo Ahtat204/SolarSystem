@@ -24,3 +24,10 @@ void Planets::Mars::Move(glm::vec3 pivot)
 	if (pivot == center) return;
 	model = glm::rotate(model, glm::radians(1.0f), pivot);
 }
+
+void Planets::Venus::Move(glm::vec3 pivot)
+{
+	if (pivot == center) return;
+	model = glm::rotate(model, glm::radians(0.35f), pivot);
+}
+
