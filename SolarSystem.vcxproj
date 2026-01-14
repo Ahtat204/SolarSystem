@@ -135,14 +135,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Earth.h" />
     <ClInclude Include="Include\Camera.h" />
-    <ClInclude Include="Include\Mercury.h" />
+    <ClInclude Include="Include\Planets.h" />
     <ClInclude Include="Include\stb\stb.h" />
     <ClInclude Include="Include\InputManager.h" />
     <ClInclude Include="Include\pch.h" />
     <ClInclude Include="Include\ShaderClass.h" />
-    <ClInclude Include="Include\Sun.h" />
     <ClInclude Include="Include\Texture.h" />
     <ClInclude Include="Include\Utilities.h" />
     <ClInclude Include="Include\VAO.h" />
@@ -150,21 +148,17 @@
     <ClInclude Include="Include\Window.h" />
     <ClInclude Include="Include\WindowBuilder.h" />
     <ClInclude Include="Include\Mesh.h" />
-    <ClInclude Include="Include\Mars.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Include\Venus.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Mars.cpp" />
-    <ClCompile Include="src\Earth.cpp" />
     <ClCompile Include="src\Camera.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Mercury.cpp" />
     <ClCompile Include="src\Mesh.cpp" />
+    <ClCompile Include="src\Planets.cpp" />
     <ClCompile Include="src\ShaderClass.cpp" />
     <ClCompile Include="src\stb.cpp" />
-    <ClCompile Include="src\Sun.cpp" />
     <ClCompile Include="src\Texture.cpp" />
     <ClCompile Include="src\VAO.cpp" />
     <ClCompile Include="src\VBO.cpp" />
