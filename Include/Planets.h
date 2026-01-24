@@ -59,7 +59,6 @@ namespace Planets
 		void Move(glm::vec3 pivot);
 	};
 
-
 	class Venus
 	{
 	public:
@@ -95,4 +94,29 @@ namespace Planets
 
 		void Move(glm::vec3 pivot);
 	};
+
+	class Jupiter
+	{
+	public:
+		float radius;
+		glm::vec3 center;
+		glm::mat4 model;
+		std::shared_ptr<Mesh> mesh;
+
+		explicit Jupiter(float r = 1.7f, glm::vec3 c = glm::vec3(19.0f, 1.0f, 0.0f))
+			: radius(r), center(c), model(glm::mat4(1.0f))
+		{
+			mesh = std::make_shared<Mesh>(Mesh::globalVertices, "ressources/jupiter.jpg");
+			model = glm::scale(model, glm::vec3(radius, radius, radius));
+		}
+
+		void Move(glm::vec3 pivot);
+	};
 }
+
+using venus = Planets::Venus;
+using earth = Planets::Earth;
+using mars = Planets::Mars;
+using mercury = Planets::Mercury;
+using sun = Planets::Sun;
+using jupiter = Planets::Jupiter;
