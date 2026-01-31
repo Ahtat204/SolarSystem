@@ -12,7 +12,7 @@ void mercury::Move(glm::vec3 pivot)
 	model = glm::rotate(model, glm::radians(0.3f), pivot);
 }
 
-void sun::Move(glm::vec3 pivot)
+void sun::Move(glm::vec3 pivot) const
 {
 	if (pivot == center) return;
 
@@ -36,4 +36,9 @@ void jupiter::Move(glm::vec3 pivot)
 	model = glm::rotate(model, glm::radians(1.0f), pivot);
 }
 
+void saturn::Move(glm::vec3 pivot)
+{
+	if (pivot == center) return;
+	model = glm::rotate(model, glm::radians(1.1f), pivot);
+}
 
