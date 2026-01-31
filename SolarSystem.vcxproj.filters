@@ -135,6 +135,9 @@
     <Image Include="ressources\Mars.jpg">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="ressources\saturn.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SolarSystem.rc">

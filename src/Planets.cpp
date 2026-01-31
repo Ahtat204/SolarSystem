@@ -1,33 +1,44 @@
 ﻿#include"Planets.h"
 
-void Planets::Earth::Move(glm::vec3 pivot)
+void earth::Move(glm::vec3 pivot)
 {
 	if (pivot == center) return;
 	model = glm::rotate(model, glm::radians(0.5f), pivot);
 }
 
-void Planets::Mercury::Move(glm::vec3 pivot)
+void mercury::Move(glm::vec3 pivot)
 {
 	if (pivot == center) return;
 	model = glm::rotate(model, glm::radians(0.3f), pivot);
 }
 
-void Planets::Sun::Move(glm::vec3 pivot)
+void sun::Move(glm::vec3 pivot) const
 {
 	if (pivot == center) return;
 
 }
 
-void Planets::Mars::Move(glm::vec3 pivot)
+void mars::Move(glm::vec3 pivot)
 {
 
 	if (pivot == center) return;
 	model = glm::rotate(model, glm::radians(1.0f), pivot);
 }
 
-void Planets::Venus::Move(glm::vec3 pivot)
+void venus::Move(glm::vec3 pivot)
 {
 	if (pivot == center) return;
 	model = glm::rotate(model, glm::radians(0.35f), pivot);
+}
+void jupiter::Move(glm::vec3 pivot)
+{
+	if (pivot == center) return;
+	model = glm::rotate(model, glm::radians(1.0f), pivot);
+}
+
+void saturn::Move(glm::vec3 pivot)
+{
+	if (pivot == center) return;
+	model = glm::rotate(model, glm::radians(1.1f), pivot);
 }
 
