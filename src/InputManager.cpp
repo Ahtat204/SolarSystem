@@ -9,7 +9,6 @@
 
 InputManager::InputManager(std::shared_ptr<Camera> camera): camera(camera)
 {
-	
 }
 
 /*GLFWscrollfun InputManager::scroll_back(GLFWwindow* window, double xoffset, double yoffset){
@@ -51,32 +50,42 @@ void InputManager::Setup(GLFWwindow* window)
 	{
 		camera->Speed = 0.4f;
 	}
-	
+
 	else if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE)
 	{
 		camera->Speed = 0.1f;
 	}
-//glfwSetScrollCallback(window, scroll_back(window, 2.2, 2.2));
+	//glfwSetScrollCallback(window, scroll_back(window, 2.2, 2.2));
 	// Handles mouse inputs
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
 		// Hides mouse cursor
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
+
+		double Mx, My;
+		glfwGetCursorPos(window, &Mx, &My);
+		glfwSetCursorPos(window, Mx, My);
+		std::cout << "current position" << camera->Position.x << " " << camera->Position.y << " " << camera->Position.z
+			<< "\n";
+		camera->eye = glm::vec3((Mx-camera->eye.x )/ 100, (My-camera->eye.y) / 100, camera->eye.z);
+		std::cout << "new position" << camera->Position.x << " " << camera->Position.y << " " << camera->Position.z <<
+			"\n";
 		// Prevents camera from jumping on the first click
 		if (firstClick)
 		{
-			glfwSetCursorPos(window, (camera->width / 2), (camera->height / 2));
+			
 			firstClick = false;
 		}
+		/*
 
 		// Stores the coordinates of the cursor
 		double mouseX;
 		double mouseY;
-		// Fetches the coordinates of the cursor
+		//Fetches the coordinates of the cursor
 		glfwGetCursorPos(window, &mouseX, &mouseY);
-		float rotX = camera->sensitivity * (float)(mouseY - (camera->height / 2)) / camera->height;
-		float rotY = camera->sensitivity * (float)(mouseX - (camera->width / 2)) / camera->width;
+		float rotX = camera->sensitivity * static_cast<float>(mouseY - (camera->height / 2)) / camera->height;
+		float rotY = camera->sensitivity * static_cast<float>(mouseX - (camera->width / 2)) / camera->width;
 
 		// Calculates upcoming vertical change in the Orientation
 		glm::vec3 newOrientation = glm::rotate(camera->Orientation, glm::radians(-rotX), glm::normalize(glm::cross(camera->Orientation, camera->Up)));
@@ -92,13 +101,14 @@ void InputManager::Setup(GLFWwindow* window)
 
 		// Sets mouse cursor to the middle of the screen so that it doesn't end up roaming around
 		glfwSetCursorPos(window, (camera->width / 2), (camera->height / 2));
+		*/
 	}
-	else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_RELEASE)
+	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_RELEASE)
 	{
 		// Unhides cursor since camera is not looking around anymore
+		//glfwSetCursorPos(window, camera->eye.x,camera->eye.y );
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 		// Makes sure the next time the camera looks around it doesn't jump
 		firstClick = true;
 	}
-
 }
