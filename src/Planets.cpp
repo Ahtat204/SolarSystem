@@ -42,3 +42,8 @@ void saturn::Move(glm::vec3 pivot)
 	model = glm::rotate(model, glm::radians(1.1f), pivot);
 }
 
+void uranus::Move(glm::vec3 pivot)
+{
+	if (pivot == center) return;
+	model = glm::rotate(model, glm::radians(1.3f), pivot);
+}

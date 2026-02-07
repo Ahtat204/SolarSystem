@@ -182,6 +182,7 @@
     <Image Include="ressources\mercury.jpg" />
     <Image Include="ressources\saturn.jpg" />
     <Image Include="ressources\Sun.jpg" />
+    <Image Include="ressources\uranus.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SolarSystem.rc" />

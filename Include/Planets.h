@@ -124,6 +124,23 @@ namespace Planets
 
 		void Move(glm::vec3 pivot);
 	};
+	class Uranus
+	{
+	public:
+		float radius;
+		glm::vec3 center;
+		glm::mat4 model;
+		std::shared_ptr<Mesh> mesh;
+
+		explicit Uranus(float r = 1.7f, glm::vec3 c = glm::vec3(23.0f, 1.0f, 0.0f))
+			: radius(r), center(c), model(glm::mat4(1.0f))
+		{
+			mesh = std::make_shared<Mesh>(Mesh::globalVertices, "ressources/uranus.jpg");
+			model = glm::scale(model, glm::vec3(radius, radius, radius));
+		}
+
+		void Move(glm::vec3 pivot);
+	};
 }
 
 using venus = Planets::Venus;
@@ -133,3 +150,4 @@ using mercury = Planets::Mercury;
 using sun = Planets::Sun;
 using jupiter = Planets::Jupiter;
 using saturn = Planets::Saturn;
+using uranus = Planets::Uranus;

@@ -29,6 +29,7 @@ int main()
 	auto  venus = Planets::Venus();
     auto jupiter = Planets::Jupiter();
     auto saturn = Planets::Saturn();
+    auto uranus = Planets::Uranus();
     while (!window->shouldClose()) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         camera->Matrix(45.0f, 0.1f, 100.0f, "view", "projection");
@@ -40,6 +41,7 @@ int main()
         venus.mesh->Draw(shaderProgram, venus.model, venus.center);
 		jupiter.mesh->Draw(shaderProgram, jupiter.model, jupiter.center);
         saturn.mesh->Draw(shaderProgram, saturn.model, saturn.center);
+		uranus.mesh->Draw(shaderProgram, uranus.model, uranus.center);
 		mercury.Move(glm::vec3(0.0f, 1.0f, 0.0f));
         earth.Move(glm::vec3(0.0f,1.0f,0.0f));
 		sun.Move(glm::vec3(0.0f, 2.0f, 0.0f));
@@ -47,6 +49,7 @@ int main()
         venus.Move(glm::vec3(0.0f, 1.0f, 0.0f));
 		jupiter.Move(glm::vec3(0.0f, 1.0f, 0.0f));
         saturn.Move(glm::vec3(0.0f, 1.0f, 0.0f));
+		uranus.Move(glm::vec3(0.0f, 1.0f, 0.0f));
         window->swapBuffers();
         window->poolEvents();
     }
