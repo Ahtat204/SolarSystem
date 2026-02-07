@@ -19,7 +19,7 @@ int main()
 	GenerateVertices(Mesh::globalVertices);
     auto window = std::make_unique<Window>(2800, 1000, "Solar System");
     window->Config();
-	auto camera = std::make_shared<Camera>(1000.0f, 500.0f, glm::vec3(1.0f, 0.0f, 6.0f));
+	auto camera = std::make_shared<Camera>(1000.0f, glm::vec3(0.0f, 1.0f, 0.0f), 500.0f,  glm::vec3(1.0f, 0.0f, 6.0f));
 	InputManager input_manager(camera);
     Shader shaderProgram("ressources/Shaders/Sphere.vert", "ressources/Shaders/Sphere.frag");
     auto earth = Planets::Earth();
