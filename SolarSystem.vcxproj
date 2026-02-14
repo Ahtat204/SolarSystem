@@ -180,6 +180,7 @@
     <Image Include="ressources\Earth.jpg" />
     <Image Include="ressources\Mars.jpg" />
     <Image Include="ressources\mercury.jpg" />
+    <Image Include="ressources\neptune.jpg" />
     <Image Include="ressources\saturn.jpg" />
     <Image Include="ressources\Sun.jpg" />
     <Image Include="ressources\uranus.jpg" />

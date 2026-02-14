@@ -47,3 +47,9 @@ void uranus::Move(glm::vec3 pivot)
 	if (pivot == center) return;
 	model = glm::rotate(model, glm::radians(1.3f), pivot);
 }
+void neptune::Move(glm::vec3 pivot)
+{
+	if (pivot == center) return;
+	model = glm::rotate(model, glm::radians(1.5f), pivot);
+}
+
