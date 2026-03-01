@@ -1,8 +1,3 @@
-<video width="790" height="360" controls>
-<source src="Video.mp4" type="video/mp4">
-Your browser does not support the video tag
-</video>
-
 # Dependency Management
 
 This project utilizes modern tools to simplify the setup process and ensure consistent builds across development environments. We use **vcpkg** as our primary package manager to handle external libraries.
